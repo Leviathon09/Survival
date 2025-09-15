@@ -301,7 +301,7 @@ version 0.6.9
       scaffolding.setAccentColor("#00c3ff");
 
       try {
-        scaffolding.addCloudProvider(new Scaffolding.Cloud.LocalStorageProvider("cloudvariables:p4-@Survival Cool.pmp"));
+        scaffolding.addCloudProvider(new Scaffolding.Cloud.WebSocketProvider(["wss://clouddata.turbowarp.org","wss://clouddata.turbowarp.xyz"], "p4-@Survival Cool.pmp"));
       } catch (error) {
         console.error(error);
       }
@@ -340,7 +340,21 @@ version 0.6.9
       handleError(e);
     }
   </script>
-  
+  <script>
+    try {
+      (function kickstartRAF() {
+  function loop() {
+    // If the game runtime hasn't started rendering, force a redraw
+    if (typeof window.requestAnimationFrame === "function") {
+      window.requestAnimationFrame(loop);
+    }
+  }
+  loop();
+})();
+    } catch (e) {
+      handleError(e);
+    }
+  </script>
   
       <script>
       const getBase85DecodeValue = (code) => {
